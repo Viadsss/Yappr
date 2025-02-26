@@ -109,11 +109,12 @@ git checkout -b <dev-name>-<task-desc>
 
 #### 3. Start working on your local copy by adding/editing/removing files.
 
-#### 4. After making changes, commit and push to the repository:
+#### 4. After making changes, pull the latest changes (to avoid merge conflict), commit, and push to the repository:
 
 ##### ✅ **Commit Message Format**
 
 ```bash
+git pull origin main
 git add .
 git commit -m "<type>: <short-description>"
 git push origin <current-branch-name>
