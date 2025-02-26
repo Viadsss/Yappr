@@ -168,5 +168,5 @@ git commit -m "feat: add login functionality"
 For further details on Laravel development, check out these resources:
 
 - 📄 **[Laravel 12.x Documentation](https://laravel.com/docs/12.x)** – The official Laravel documentation.
-- 🎥 **[Laracasts](https://laracasts.com/)** – High-quality video tutorials on Laravel and modern web development.
+- 🎥 **[Laracasts](https://laracasts.com/)** – High-quality video tutorials on Laravel.
 - 🎧 **[Laravel YouTube Channel](https://www.youtube.com/c/Laravel)** – Free video content about Laravel features.
