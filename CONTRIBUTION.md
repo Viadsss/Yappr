@@ -153,9 +153,9 @@ git commit -m "feat: add login functionality"
 
 ```
 ### Changes Includes:
-- **Add:** (List files added + reason)
-- **Modify:** (List files modified + reason)
-- **Remove:** (List files deleted + reason)
+- Add: (List files added + reason)
+- Modify: (List files modified + reason)
+- Remove: (List files deleted + reason)
 
 ### 📦 Packages Installed:
 - [Package Name] - [Reason for adding]
