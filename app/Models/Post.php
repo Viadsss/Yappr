@@ -16,6 +16,15 @@ class Post extends Model
 
     use HasSlug;
 
+    protected $fillable = [
+        'user_id',
+        'title',
+        'slug',
+        'content',
+        'visibility',
+        'thumbnail_url',
+    ];
+
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
