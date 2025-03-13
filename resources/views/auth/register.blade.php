@@ -1,6 +1,6 @@
 <x-layout :haveHeader="false" :haveFooter="false">
     <div>
-        <form action="{{ route('register.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div>
                 <label for="name">Name</label>

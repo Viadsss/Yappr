@@ -3,31 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class RegisteredUser extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('auth.register');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(RegisterRequest $request)
     {
         $attributes = $request->validated();
@@ -42,35 +31,35 @@ class RegisteredUser extends Controller
         return redirect()->intended(route('yaps.index'));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit()
     {
-        //
+        return view('users.edit', ['user' => auth()->user()]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(UpdateUserRequest $request)
     {
-        //
-    }
+        $attributes = $request->validated();
+        /**
+         * @var User $user;
+         */
+        $user = request()->user();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+        if ($request->hasFile('avatar')) {
+            if ($user->avatar) {
+                Storage::disk('public')->delete($user->avatar);
+            }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+            $attributes['avatar'] = Storage::disk('public')->putFile('avatars', $request->file('avatar'));
+        }
+
+        if (!empty($attributes['password'])) {
+            $attributes['password'] = Hash::make($attributes['password']);
+        } else {
+            unset($attributes['password']);
+        }
+
+        $user->update($attributes);
+
+        return redirect()->route('profile')->with('status', 'Profile updated successfully!');
     }
 }

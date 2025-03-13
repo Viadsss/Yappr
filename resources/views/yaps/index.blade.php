@@ -1,7 +1,7 @@
 <x-layout>
     <div>
         {{-- <img src="{{ Storage::url(auth()->user()->avatar) }}" /> --}}
-        <form action="{{ route('session.destroy') }}" method="POST">
+        <form action="{{ route('logout') }}" method="POST">
             @csrf
             @method('DELETE')
             <button type="submit">Logout</button>
