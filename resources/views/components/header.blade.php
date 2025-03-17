@@ -2,10 +2,11 @@
     <div class="mx-auto max-w-screen-2xl py-2">
         <div class="flex items-center justify-between h-16 px-4">
             <div>
-                <a class="flex items-center gap-x-2">
+                <a href="/" class="flex items-center gap-x-2">
                     <i class="fa-solid fa-cart-shopping fa-xl"></i>
                     <i class="ti ti-brand-laravel text-4xl text-indigo-600"></i>
-                    <span class="text-2xl">Yappr</span>
+                    <span class="text-2xl font-black leading-none text-gray-900 select-none logo">Yappr<span
+                            class="text-indigo-600">.</span></span>
                 </a>
             </div>
             <button id="menu-toggle" class="inline-flex items-center px-3 py-2 cursor-pointer gap-x-2">
