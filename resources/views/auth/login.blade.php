@@ -1,5 +1,10 @@
 @extends('layouts.guest')
 @section('title', 'Register | Yappr')
+
+@section('header')
+    <x-header />
+@endsection
+
 @section('content')
     <i class="ti ti-brand-laravel text-7xl text-indigo-600"></i>
 
@@ -22,4 +27,8 @@
             <x-link href="{{ route('register') }}" class="font-medium">Sign Up</x-link>
         </div>
     </form>
+@endsection
+
+@section('footer')
+    <x-footer />
 @endsection
