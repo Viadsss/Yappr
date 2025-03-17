@@ -7,6 +7,10 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    if (Auth::check()) {
+        return redirect()->route('yaps.index'); // Adjust route name as needed
+    }
+
     return view('index');
 })->name('index');
 
