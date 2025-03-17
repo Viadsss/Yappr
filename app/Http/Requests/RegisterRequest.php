@@ -35,7 +35,7 @@ class RegisterRequest extends FormRequest
     public function messages()
     {
         return [
-            'avatar.max' => 'Avatar must be 2MB or smaller .'
+            'avatar.max' => 'Avatar must be 2MB or smaller.'
         ];
     }
 

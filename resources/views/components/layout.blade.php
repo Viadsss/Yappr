@@ -16,11 +16,10 @@
 </head>
 
 <body>
-    <div class="px-10">
+    <div class="relative h-full min-h-screen antialiased bg-gray-100 font-lexend">
         @if ($haveHeader)
             <x-header />
         @endif
-
 
         <main>
             {{ $slot }}

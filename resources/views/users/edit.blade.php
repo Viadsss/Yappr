@@ -69,7 +69,7 @@
         </form>
     </div>
 
-    @push('scripts')
+    @pushOnce('scripts')
         @vite('resources/js/imagePreview.js')
-    @endpush
+    @endpushOnce
 </x-layout>

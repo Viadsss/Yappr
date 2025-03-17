@@ -1,22 +1,25 @@
-<x-layout :haveHeader="false" :haveFooter="false">
-    <form action="{{ route('session.store') }}" method="POST">
+@extends('layouts.guest')
+@section('title', 'Register | Yappr')
+@section('content')
+    <i class="ti ti-brand-laravel text-7xl text-indigo-600"></i>
+
+    <form method="POST" action="{{ route('session.store') }} " class="bg-white px-6 py-4 rounded-lg shadow-md w-md">
         @csrf
-        <div>
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" value="{{ old('email') }}" />
-            @error('email')
-                <p class="text-red-500 text-sm">{{ $message }}</p>
-            @enderror
-        </div>
 
-        <div>
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" />
-            @error('password')
-                <p class="text-red-500 text-sm">{{ $message }}</p>
-            @enderror
-        </div>
+        <x-forms.input.text label="Email" name="email" :required="true" type="email" autofocus autocomplete="email" />
+        <x-forms.input.text label="Password" name="password" :required="true" type="password" />
 
-        <button type="submit" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">Login</button>
+        <div class="flex items-center my-4 justify-between">
+            <x-forms.input.checkbox label="Remember Me" name="remember_me" />
+            <x-link href="/forgot-password">Forgot Password?</x-link>
+        </div>
+        <x-button variant="primary" type="submit" class="w-full mt-2">
+            Log In
+        </x-button>
+
+        <div class="text-center flex flex-col items-center mt-2">
+            <span class="text-sm">Don't have an account?</span>
+            <x-link href="{{ route('register') }}" class="font-medium">Sign Up</x-link>
+        </div>
     </form>
-</x-layout>
+@endsection
