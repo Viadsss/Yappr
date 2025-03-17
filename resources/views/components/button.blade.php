@@ -1,4 +1,4 @@
-@props(['variant' => 'primary'])
+@props(['variant' => 'primary', 'link' => false])
 
 @php
     $baseClass =
@@ -16,6 +16,12 @@
     $buttonClass = $baseClass . ' ' . ($variants[$variant] ?? $variants['primary']);
 @endphp
 
-<button {{ $attributes->merge(['class' => $buttonClass]) }}>
-    {{ $slot }}
-</button>
+@if ($link)
+    <a {{ $attributes->merge(['class' => $buttonClass]) }}>
+        {{ $slot }}
+    </a>
+@else
+    <button {{ $attributes->merge(['class' => $buttonClass]) }}>
+        {{ $slot }}
+    </button>
+@endif
