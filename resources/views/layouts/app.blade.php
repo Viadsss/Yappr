@@ -9,16 +9,14 @@
     @vite(['resources/js/app.js', 'resources/css/app.css'])
 </head>
 
-<body class="relative antialiased bg-gray-100 font-lexend">
-    <x-header />
+<body class="relative antialiased bg-gray-100 font-lexend h-screen scroll-smooth">
+    @yield('header')
 
-    <div class="max-w-screen-2xl border-2 border-red-500 mx-auto h-screen">
-        <main class="border-2 border-pink-400">
-            @yield('content')
-        </main>
-    </div>
+    <main class="max-w-screen-2xl mx-auto min-h-full border-2 border-pink-400 pt-4 pb-8 px-8">
+        @yield('content')
+    </main>
 
-    <x-footer />
+    @yield('footer')
     @stack('scripts')
 </body>
 
