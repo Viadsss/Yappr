@@ -12,7 +12,7 @@
         class="bg-white px-6 py-4 rounded-lg shadow-md w-full max-w-md">
         @csrf
 
-        <x-forms.input.text label="Email" name="email" :required="true" type="email" autofocus autocomplete="email" />
+        <x-forms.input.text label="Username or Email" name="email" :required="true" autofocus />
         <x-forms.input.text label="Password" name="password" :required="true" type="password" />
 
         <div class="flex flex-col items-center my-4 justify-between sm:flex-row gap-2">

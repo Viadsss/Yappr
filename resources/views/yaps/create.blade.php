@@ -7,7 +7,7 @@
     <div class="container mx-auto px-4 py-8 flex flex-col items-center">
         <h1 class="text-3xl font-bold text-center mb-8">Create New Post</h1>
 
-        <form action="#" method="POST" enctype="multipart/form-data"
+        <form action="{{ route('yaps.store') }}" method="POST" enctype="multipart/form-data"
             class="bg-white px-6 py-4 rounded-lg shadow-md w-full max-w-md">
             @csrf
             <x-forms.input.text label="Title" name="title" :required="true" />
@@ -31,9 +31,6 @@
 
             <x-forms.input.datetime name="scheduled_at" label="Schedule Post (Optional)" :required="false"
                 hint="Leave empty to publish immediately" min="{{ now()->format('Y-m-d\TH:i') }}" />
-
-            {{-- <x-forms.input.datetime name="scheduled_at" label="Schedule Post (Optional)" :required="false"
-                hint="Leave empty to publish immediately" /> --}}
 
             <div class="flex gap-4 mt-8">
                 <x-button variant="secondary" type="button" class="w-1/2" onclick="window.history.back()">

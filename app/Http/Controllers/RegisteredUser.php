@@ -13,6 +13,21 @@ use Illuminate\Validation\Rules\Password;
 
 class RegisteredUser extends Controller
 {
+    public function show(User $user)
+    {
+        // Eager load posts with their reactions and paginate them
+        $posts = $user->posts()
+            ->with('reactions')
+            ->withCount('reactions')
+            ->latest()
+            ->paginate(9);
+
+        return view('users.show', [
+            'user' => $user->loadCount('posts'),
+            'posts' => $posts
+        ]);
+    }
+
     public function create()
     {
         return view('auth.register');

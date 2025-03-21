@@ -17,21 +17,6 @@ Route::get('/test', function () {
     return view('test');
 });
 
-Route::get('/yaps', [PostController::class, 'index'])
-    ->middleware('auth')
-    ->name('yaps.index');
-
-Route::get('/yaps/create', [PostController::class, 'create'])
-    ->middleware('auth')
-    ->name('yaps.create');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [RegisteredUser::class, 'show'])->name('profile');
-    Route::get('/profile/edit', [RegisteredUser::class, 'edit'])->name('edit-profile');
-    Route::put('/profile', [RegisteredUser::class, 'update'])->name('update-profile');
-    Route::put('/profile/password', [RegisteredUser::class, 'updatePassword'])->name('update-profile-password');
-});
-
 Route::middleware('guest')->group(function () {
     Route::get('/register', [RegisteredUser::class, 'create'])->name('register');
     Route::post('/register', [RegisteredUser::class, 'store'])->name('user.store');
@@ -43,4 +28,19 @@ Route::middleware('guest')->group(function () {
 Route::delete('/logout', [SessionController::class, 'destroy'])
     ->middleware('auth')
     ->name('logout');
+
+
+Route::middleware('auth')->group(function () {
+    Route::get('/yaps/create', [PostController::class, 'create'])->name('yaps.create');
+    Route::post('/yaps', [PostController::class, 'store'])->name('yaps.store');
+
+    Route::get('/profile/edit', [RegisteredUser::class, 'edit'])->name('edit-profile');
+    Route::put('/profile', [RegisteredUser::class, 'update'])->name('update-profile');
+    Route::put('/profile/password', [RegisteredUser::class, 'updatePassword'])->name('update-profile-password');
+});
+
+Route::get('/yaps', [PostController::class, 'index'])->name('yaps.index');
+Route::get('/u/{user:username}', [RegisteredUser::class, 'show'])->name('profile');
+
+
 

@@ -12,13 +12,6 @@
                             class="text-indigo-600">.</span></span>
                 </a>
             </div>
-            {{--
-            @guest
-                <div class="space-x-4">
-                    <x-button variant="secondary" :link="true" href="{{ route('login') }}">Log In</x-button>
-                    <x-button variant="primary" :link="true" href="{{ route('register') }}">Sign Up</x-button>
-                </div>
-            @endguest --}}
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="64">
@@ -26,7 +19,7 @@
                         @auth
                             <div class="flex px-3 items-center gap-x-4">
                                 <img src="{{ asset(auth()->user()->avatar) }}" class="w-10 h-10 rounded-full" />
-                                <p>{{ auth()->user()->name }}</p>
+                                <p>{{ auth()->user()->full_name }}</p>
                                 <i class="ti ti-chevron-down"></i>
                             </div>
                         @else
@@ -37,9 +30,9 @@
 
                     <x-slot:content>
                         @auth
-                            <x-dropdown-link href="/profile/edit">
+                            <x-dropdown-link href="{{ route('profile', auth()->user()) }}">
                                 <i class="ti ti-user"></i>
-                                User
+                                Profile
                             </x-dropdown-link>
 
                             <form method="POST" action="{{ route('logout') }}">
@@ -54,11 +47,11 @@
                                 </x-dropdown-link>
                             </form>
                         @else
-                            <x-dropdown-link href="/profile/edit">
+                            <x-dropdown-link href="{{ route('login') }}">
                                 <i class="ti ti-user"></i>
                                 Log In
                             </x-dropdown-link>
-                            <x-dropdown-link href="/profile/edit">
+                            <x-dropdown-link href="{{ route('register') }}">
                                 <i class="ti ti-user"></i>
                                 Register
                             </x-dropdown-link>
@@ -80,12 +73,12 @@
                 <div class="flex py-3 items-center gap-x-2 border-y border-gray-100">
                     <img src="{{ asset(auth()->user()->avatar) }}" class="w-12 h-12 rounded-full" />
                     <div>
-                        <p>{{ auth()->user()->name }}</p>
+                        <p>{{ auth()->user()->full_name }}</p>
                         <p class="text-gray-600">{{ auth()->user()->email }}</p>
                     </div>
                 </div>
                 <div>
-                    <a href="{{ route('profile') }}">Profile</a>
+                    <a href="{{ route('yaps.index') }}">Profile</a>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         @method('DELETE')
@@ -104,10 +97,12 @@
         const iconBars = document.getElementById("icon-bars");
         const iconClose = document.getElementById("icon-close");
 
-        toggleBtn.addEventListener("click", () => {
-            menu.classList.toggle("hidden");
-            iconBars.classList.toggle("hidden");
-            iconClose.classList.toggle("hidden");
-        });
+        if (toggleBtn) {
+            toggleBtn.addEventListener("click", () => {
+                menu.classList.toggle("hidden");
+                iconBars.classList.toggle("hidden");
+                iconClose.classList.toggle("hidden");
+            });
+        }
     </script>
 @endpushOnce

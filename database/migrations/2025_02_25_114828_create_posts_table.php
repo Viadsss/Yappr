@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('content');
-            $table->string('thumbnail_url')->nullable();
+            $table->string('thumbnail')->nullable();
             $table->enum('visibility', ['public', 'private', 'followers'])->default('public');
             $table->timestamp('scheduled_at')->nullable();
             $table->timestamps();

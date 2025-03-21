@@ -16,22 +16,30 @@ class SessionController extends Controller
 
     public function store(Request $request)
     {
-        $request->merge([
-            'email' => Str::lower($request->input('email'))
-        ]);
+        // Determine if the input is an email or username
+        $loginField = filter_var($request->input('email'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
-        $credentials = $request->validate([
-            'email' => ['required'],
+        // Set the credentials based on the input type
+        $credentials = [
+            $loginField => $loginField === 'email'
+                ? Str::lower($request->input('email'))
+                : $request->input('email'),
+            'password' => $request->input('password')
+        ];
+
+        $request->validate([
+            'email' => ['required', 'string'],
             'password' => ['required'],
         ]);
 
         if (!Auth::attempt($credentials, $request->has('remember_me'))) {
             throw ValidationException::withMessages([
-                'password' => 'Credentials does not match'
+                'password' => 'Credentials do not match our records'
             ]);
         }
 
         request()->session()->regenerate();
+
         return redirect()->route('yaps.index');
     }
 

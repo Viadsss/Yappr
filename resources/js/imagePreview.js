@@ -1,3 +1,6 @@
+sessionStorage.removeItem("avatarPreview");
+sessionStorage.removeItem("thumbnailPreview");
+
 document.addEventListener("DOMContentLoaded", () => {
     const avatarInput = document.getElementById("avatar");
     const avatarPreview = document.getElementById("avatar-preview");
@@ -6,9 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const thumbnailInput = document.getElementById("thumbnail");
     const thumbnailPreview = document.getElementById("thumbnail-preview");
     const savedThumbnail = sessionStorage.getItem("thumbnailPreview");
-
-    sessionStorage.removeItem("avatarPreview");
-    sessionStorage.removeItem("thumbnailPreview");
 
     // If a saved image exists, display it
     if (savedAvatar) {

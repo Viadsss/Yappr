@@ -12,7 +12,8 @@
         class="bg-white px-6 py-4 rounded-lg shadow-md w-full max-w-md">
         @csrf
 
-        <x-forms.input.text label="Name" name="name" :required="true" autocomplete="name" />
+        <x-forms.input.text label="Full Name" name="full_name" :required="true" autocomplete="name" />
+        <x-forms.input.text label="Username" name="username" :required="true" />
         <x-forms.input.text label="Email" name="email" :required="true" type="email" autocomplete="email" />
 
         <x-forms.input.select name="gender" label="Gender" :required="true">

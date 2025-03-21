@@ -25,7 +25,14 @@ class UpdateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['sometimes', 'string', 'max:50'],
+            'full_name' => ['sometimes', 'string', 'min:5', 'max:50'],
+            'username' => [
+                'sometimes',
+                'alpha_dash:ascii',
+                'min:3',
+                'max:20',
+                Rule::unique('users', 'username')->ignore($this->user()->username)
+            ],
             'email' => [
                 'sometimes',
                 'string',
@@ -50,6 +57,12 @@ class UpdateUserRequest extends FormRequest
         if ($this->email) {
             $this->merge([
                 'email' => Str::lower($this->email),
+            ]);
+        }
+
+        if ($this->username) {
+            $this->merge([
+                'username' => Str::lower($this->username)
             ]);
         }
     }

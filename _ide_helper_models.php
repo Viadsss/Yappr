@@ -20,7 +20,7 @@ namespace App\Models{
  * @property string $title
  * @property string $slug
  * @property string $content
- * @property string|null $thumbnail_url
+ * @property string|null $thumbnail
  * @property string $visibility
  * @property string|null $scheduled_at
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -37,7 +37,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereScheduledAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereThumbnailUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereThumbnail($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Post whereUserId($value)
@@ -75,7 +75,8 @@ namespace App\Models{
  * 
  *
  * @property int $id
- * @property string $name
+ * @property string $full_name
+ * @property string $username
  * @property string $email
  * @property string $gender
  * @property string|null $avatar
@@ -98,12 +99,13 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereEmailVerifiedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereFullName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereGender($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|User whereUsername($value)
  */
 	class User extends \Eloquent {}
 }

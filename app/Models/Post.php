@@ -22,7 +22,7 @@ class Post extends Model
         'slug',
         'content',
         'visibility',
-        'thumbnail_url',
+        'thumbnail',
     ];
 
     public function getSlugOptions(): SlugOptions

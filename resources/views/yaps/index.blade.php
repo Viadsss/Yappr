@@ -9,19 +9,24 @@
     <div class="w-full max-w-5xl mx-auto px-4 py-8">
         <div class="flex justify-between items-center mb-8">
             <h2 class="text-3xl font-bold">Explore Yaps</h2>
-            <a href="{{ route('yaps.create') }}"
-                class="hidden sm:inline-flex items-center px-4 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 shadow-sm">
-                <i class="ti ti-plus mr-2"></i> Create Yap
-            </a>
+
+            @can('create', App\Models\Post::class)
+                <a href="{{ route('yaps.create') }}"
+                    class="hidden sm:inline-flex items-center px-4 py-2 bg-indigo-600 text-white font-medium rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 shadow-sm">
+                    <i class="ti ti-plus mr-2"></i> Create Yap
+                </a>
+            @endcan
         </div>
 
 
-        <div class="fixed bottom-6 right-6 md:hidden z-10">
-            <a href="{{ route('yaps.create') }}"
-                class="flex items-center justify-center w-14 h-14 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                <i class="ti ti-plus text-xl"></i>
-            </a>
-        </div>
+        @can('create', App\Models\Post::class)
+            <div class="fixed bottom-6 right-6 md:hidden z-10">
+                <a href="{{ route('yaps.create') }}"
+                    class="flex items-center justify-center w-14 h-14 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <i class="ti ti-plus text-xl"></i>
+                </a>
+            </div>
+        @endcan
 
         <div class="space-y-4">
             @foreach ($posts as $post)
@@ -29,14 +34,15 @@
                     <div class="flex items-center space-x-3 mb-3">
                         <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center overflow-hidden">
                             @if ($post->user->avatar)
-                                <img src="{{ $post->user->avatar }}" alt="{{ $post->user->name }}"
+                                <img src="{{ asset($post->user->avatar) }}" alt="{{ $post->user->username }}"
                                     class="w-full h-full object-cover">
                             @else
                                 <i class="ti ti-user text-indigo-600"></i>
                             @endif
                         </div>
                         <div>
-                            <p class="font-medium">{{ $post->user->name }}</p>
+                            <a href="{{ route('profile', $post->user) }}"
+                                class="font-medium">{{ $post->user->full_name }}</a>
                             <p class="text-xs text-gray-500">{{ $post->created_at->diffForHumans() }}</p>
                         </div>
                     </div>
@@ -44,15 +50,16 @@
                     <h4 class="font-medium mb-2">{{ $post->title }}</h4>
                     <p class="text-gray-700 mb-3">{{ Str::limit(strip_tags($post->content), 100) }}</p>
 
-                    @if ($post->thumbnail_url)
+                    @if ($post->thumbnail)
                         <div class="p-3 mb-3">
-                            <img src="{{ $post->thumbnail_url }}" alt="{{ $post->title }}" class="rounded object-cover" />
+                            <img src="{{ asset($post->thumbnail) }}" alt="{{ $post->title }}"
+                                class="rounded object-cover" />
                         </div>
                     @endif
 
                     <div class="flex items-center space-x-4 mt-3 text-gray-500">
                         <a href="" class="flex items-center space-x-1">
-                            <i class="ti ti-heart"></i>
+                            <i class="ti ti-heart-filled text-red-500"></i>
                             <span>3</span>
                         </a>
                         <a href="" class="flex items-center space-x-1">

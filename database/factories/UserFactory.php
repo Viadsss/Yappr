@@ -26,10 +26,12 @@ class UserFactory extends Factory
         $name = fake()->name();
 
         return [
-            'name' => $name,
+            'full_name' => $name,
+            'username' => fake()->userName(),
             'email' => fake()->unique()->safeEmail(),
             'gender' => fake()->randomElement(['male', 'female', 'others', 'unspecified']),
-            'avatar' => 'https://ui-avatars.com/api/?name=' . urlencode($name),
+            // 'avatar' => 'https://ui-avatars.com/api/?name=' . urlencode($name),
+            'avatar' => 'defaults/default_avatar.png',
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),

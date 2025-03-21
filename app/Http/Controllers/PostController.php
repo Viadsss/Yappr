@@ -12,8 +12,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        // $posts = Post::latest()->with('user:id,name')->get();
-        $posts = Post::with('user:id,name')->latest()->simplePaginate(5);
+        $posts = Post::with('user:id,full_name,username,avatar')->latest()->simplePaginate(5);
         return view('yaps.index', compact('posts'));
     }
 
@@ -30,7 +29,27 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title' => ['required', 'string', 'min:5', 'max:50'],
+            'content' => ['required', 'string', 'min:10', 'max:2000'],
+            'thumbnail' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:5120'],
+            'visibility' => ['required', 'in:public,private,followers'],
+            'scheduled_at' => ['nullable', 'date'],
+        ], [
+            'thumbnail.max' => 'The thumbnail must be 5MB or smaller.',
+        ]);
+
+
+        if ($request->hasFile('thumbnail')) {
+            $validated['thumbnail'] = $request->file('thumbnail')->store('thumbnails', 'public');
+        }
+
+        $validated['user_id'] = auth()->user()->id;
+
+        Post::create($validated);
+
+        return redirect()->route('index')->with('status', 'Post created successfully!');
+
     }
 
     /**

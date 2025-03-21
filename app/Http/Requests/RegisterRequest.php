@@ -24,7 +24,8 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:50'],
+            'full_name' => ['required', 'string', 'min:5', 'max:50'],
+            'username' => ['required', 'alpha_dash:ascii', 'min:3', 'max:20', 'unique:users,username'],
             'email' => ['required', 'string', 'email:strict,dns', 'max:255', 'unique:users,email'],
             'gender' => ['required', 'in:male,female,others,unspecified'],
             'avatar' => ['required', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
@@ -42,7 +43,8 @@ class RegisterRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'email' => Str::lower($this->email)
+            'email' => Str::lower($this->email),
+            'username' => Str::lower($this->username)
         ]);
     }
 }

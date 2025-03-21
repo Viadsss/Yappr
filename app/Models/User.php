@@ -20,7 +20,8 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'full_name',
+        'username',
         'email',
         'gender',
         'avatar',
@@ -58,5 +59,10 @@ class User extends Authenticatable
     public function reactions(): HasMany
     {
         return $this->hasMany(Reaction::class);
+    }
+
+    public function totalReactions()
+    {
+        return $this->posts()->withCount('reactions')->get()->sum('reactions_count');
     }
 }

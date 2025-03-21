@@ -17,11 +17,11 @@
                 a whole new way.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-                <a href="/register"
+                <a href="{{ route('register') }}"
                     class="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-colors duration-200">
                     Join Yappr
                 </a>
-                <a href="/explore"
+                <a href="{{ route('yaps.index') }}"
                     class="px-8 py-3 bg-white hover:bg-gray-50 text-indigo-600 font-medium rounded-lg border border-gray-200 transition-colors duration-200">
                     Explore Feed
                 </a>
@@ -138,7 +138,7 @@
             </div>
 
             <div class="text-center mt-6">
-                <a href="/explore" class="text-indigo-600 font-medium flex items-center justify-center">
+                <a href="{{ route('yaps.index') }}" class="text-indigo-600 font-medium flex items-center justify-center">
                     See more in the feed
                     <i class="ti ti-arrow-right ml-1"></i>
                 </a>
@@ -224,12 +224,12 @@
                 content.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="/register"
+                <a href="{{ route('register') }}"
                     class="px-8 py-3 bg-white text-indigo-600 font-medium rounded-lg hover:bg-gray-100 transition-colors duration-200 flex items-center justify-center">
                     <i class="ti ti-user-plus mr-2"></i>
                     Create Account
                 </a>
-                <a href="/login"
+                <a href="{{ route('login') }}"
                     class="px-8 py-3 bg-transparent border border-white text-white font-medium rounded-lg hover:bg-white/10 transition-colors duration-200 flex items-center justify-center">
                     <i class="ti ti-login mr-2"></i>
                     Sign In
@@ -440,7 +440,7 @@
             <h2 class="text-3xl font-bold mb-4">Ready to Join the Conversation?</h2>
             <p class="text-xl mb-8 max-w-2xl mx-auto">Create your account today and start sharing your content with the
                 world.</p>
-            <a href="/register"
+            <a href="{{ route('register') }}"
                 class="px-8 py-3 bg-white text-indigo-600 font-medium rounded-lg hover:bg-gray-100 transition-colors duration-200 inline-flex items-center">
                 <i class="ti ti-user-plus mr-2"></i>
                 Get Started for Free
