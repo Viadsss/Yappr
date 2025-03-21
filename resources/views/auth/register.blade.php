@@ -1,15 +1,15 @@
 @extends('layouts.guest')
-@section('title', 'Log In | Yappr')
+@section('title', 'Register | Yappr')
 
 @section('header')
     <x-header />
 @endsection
 
 @section('content')
-    <i class="ti ti-brand-laravel text-7xl text-indigo-600"></i>
+    <i class="ti ti-brand-laravel text-6xl text-indigo-600 md:text-7xl"></i>
 
     <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data"
-        class="bg-white px-6 py-4 rounded-lg shadow-md w-md">
+        class="bg-white px-6 py-4 rounded-lg shadow-md w-full max-w-md">
         @csrf
 
         <x-forms.input.text label="Name" name="name" :required="true" autocomplete="name" />
@@ -29,7 +29,8 @@
             accept="image/png, image/jpeg" />
 
         <div class="mt-3 flex items-center justify-center w-full">
-            <img id="avatar-preview" src="#" alt="Avatar Preview" class="hidden w-64 h-64 rounded-full" />
+            <img id="avatar-preview" src="#" alt="Avatar Preview"
+                class="object-cover hidden w-64 h-64 rounded-full" />
         </div>
 
         <x-button variant="primary" type="submit" class="w-full mt-8">

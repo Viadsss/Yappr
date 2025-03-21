@@ -12,7 +12,7 @@
 <body class="relative antialiased bg-gray-100 font-lexend h-screen scroll-smooth">
     @yield('header')
 
-    <main class="max-w-screen-2xl mx-auto min-h-full border-2 border-pink-400 pt-4 pb-8 px-8">
+    <main class="max-w-screen-2xl mx-auto min-h-full pt-4 pb-8 px-8">
         @yield('content')
     </main>
 

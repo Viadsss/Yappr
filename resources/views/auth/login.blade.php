@@ -6,15 +6,16 @@
 @endsection
 
 @section('content')
-    <i class="ti ti-brand-laravel text-7xl text-indigo-600"></i>
+    <i class="ti ti-brand-laravel text-6xl text-indigo-600 md:text-7xl"></i>
 
-    <form method="POST" action="{{ route('session.store') }} " class="bg-white px-6 py-4 rounded-lg shadow-md w-md">
+    <form method="POST" action="{{ route('session.store') }} "
+        class="bg-white px-6 py-4 rounded-lg shadow-md w-full max-w-md">
         @csrf
 
         <x-forms.input.text label="Email" name="email" :required="true" type="email" autofocus autocomplete="email" />
         <x-forms.input.text label="Password" name="password" :required="true" type="password" />
 
-        <div class="flex items-center my-4 justify-between">
+        <div class="flex flex-col items-center my-4 justify-between sm:flex-row gap-2">
             <x-forms.input.checkbox label="Remember Me" name="remember_me" />
             <x-link href="/forgot-password">Forgot Password?</x-link>
         </div>

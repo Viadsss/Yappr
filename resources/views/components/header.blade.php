@@ -1,3 +1,5 @@
+@props(['hasLink' => true])
+
 <header class="bg-white">
     <div class="mx-auto max-w-screen-2xl py-2">
 
@@ -10,26 +12,31 @@
                             class="text-indigo-600">.</span></span>
                 </a>
             </div>
-
+            {{--
             @guest
                 <div class="space-x-4">
                     <x-button variant="secondary" :link="true" href="{{ route('login') }}">Log In</x-button>
                     <x-button variant="primary" :link="true" href="{{ route('register') }}">Sign Up</x-button>
                 </div>
-            @endguest
+            @endguest --}}
 
-            @auth
-                <div class="hidden sm:flex sm:items-center sm:ms-6">
-                    <x-dropdown align="right" width="64">
-                        <x-slot:trigger>
+            <div class="hidden sm:flex sm:items-center sm:ms-6">
+                <x-dropdown align="right" width="64">
+                    <x-slot:trigger>
+                        @auth
                             <div class="flex px-3 items-center gap-x-4">
                                 <img src="{{ asset(auth()->user()->avatar) }}" class="w-10 h-10 rounded-full" />
                                 <p>{{ auth()->user()->name }}</p>
                                 <i class="ti ti-chevron-down"></i>
                             </div>
-                        </x-slot:trigger>
+                        @else
+                            <span>Menu</span>
+                            <i class="ti ti-chevron-down"></i>
+                        @endauth
+                    </x-slot:trigger>
 
-                        <x-slot:content>
+                    <x-slot:content>
+                        @auth
                             <x-dropdown-link href="/profile/edit">
                                 <i class="ti ti-user"></i>
                                 User
@@ -46,9 +53,21 @@
                                     Log Out
                                 </x-dropdown-link>
                             </form>
-                        </x-slot:content>
-                    </x-dropdown>
-                </div>
+                        @else
+                            <x-dropdown-link href="/profile/edit">
+                                <i class="ti ti-user"></i>
+                                Log In
+                            </x-dropdown-link>
+                            <x-dropdown-link href="/profile/edit">
+                                <i class="ti ti-user"></i>
+                                Register
+                            </x-dropdown-link>
+                        @endauth
+                    </x-slot:content>
+                </x-dropdown>
+            </div>
+
+            @auth
                 <button id="menu-toggle" class="inline-flex items-center px-3 py-2 cursor-pointer gap-x-2 sm:hidden">
                     <i id="icon-bars" class="ti ti-menu-2 text-3xl p-1 rounded sm:hidden"></i>
                     <i id="icon-close" class="ti ti-x text-3xl hidden bg-gray-100 p-1 rounded sm:block"></i>

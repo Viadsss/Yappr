@@ -1,5 +1,5 @@
 @extends('layouts.guest')
-@section('title', 'Yappr - Social Voice Sharing')
+@section('title', 'Yappr - Social Content Platform')
 
 @section('header')
     <x-header />
@@ -10,10 +10,10 @@
         <!-- Hero Header -->
         <div class="text-center space-y-6 max-w-4xl">
             <h1 class="text-4xl md:text-6xl font-bold text-gray-900">
-                Share Your Voice. Connect. Engage.
+                Share Your Thoughts. Connect. Engage.
             </h1>
             <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
-                The social platform where your voice matters. Create audio posts, follow friends, and join conversations in
+                The social platform where your content matters. Create posts, follow friends, and join conversations in
                 a whole new way.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center pt-4">
@@ -43,10 +43,10 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl mt-16">
             <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
                 <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
-                    <i class="ti ti-microphone text-indigo-600 text-xl"></i>
+                    <i class="ti ti-edit text-indigo-600 text-xl"></i>
                 </div>
-                <h3 class="text-lg font-semibold mb-2">Voice Posts</h3>
-                <p class="text-gray-600">Create and share audio posts that express your true voice and personality.</p>
+                <h3 class="text-lg font-semibold mb-2">Engaging Posts</h3>
+                <p class="text-gray-600">Create and share content that expresses your true thoughts and personality.</p>
             </div>
 
             <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
@@ -54,7 +54,7 @@
                     <i class="ti ti-users text-indigo-600 text-xl"></i>
                 </div>
                 <h3 class="text-lg font-semibold mb-2">Community</h3>
-                <p class="text-gray-600">Follow friends, join groups, and build your network of voice connections.</p>
+                <p class="text-gray-600">Follow friends, join groups, and build your network of connections.</p>
             </div>
 
             <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
@@ -68,7 +68,7 @@
 
         <!-- Feed Preview -->
         <div class="w-full max-w-5xl mt-16">
-            <h2 class="text-3xl font-bold text-center mb-8">Your Feed, Your Voice</h2>
+            <h2 class="text-3xl font-bold text-center mb-8">Your Feed, Your Story</h2>
 
             <div class="space-y-4">
                 <!-- Example Post 1 -->
@@ -82,12 +82,12 @@
                             <p class="text-xs text-gray-500">2 hours ago</p>
                         </div>
                     </div>
-                    <div class="bg-gray-50 rounded-lg p-3 flex items-center justify-between">
-                        <div class="flex items-center">
-                            <i class="ti ti-player-play text-indigo-600 mr-3"></i>
-                            <span class="text-sm">Thoughts on the latest tech trends</span>
-                        </div>
-                        <span class="text-xs text-gray-500">0:42</span>
+                    <h4 class="font-medium mb-2">Thoughts on the latest tech trends</h4>
+                    <p class="text-gray-700 mb-3">Just attended an amazing tech conference where the future of AI was
+                        discussed. The potential applications in healthcare are mind-blowing! What do you think about the
+                        ethical implications?</p>
+                    <div class="bg-gray-50 rounded-lg p-3 mb-3">
+                        <img src="https://placehold.co/600x300" alt="Tech Conference" class="rounded w-full object-cover" />
                     </div>
                     <div class="flex items-center space-x-4 mt-3 text-gray-500">
                         <button class="flex items-center space-x-1">
@@ -116,13 +116,10 @@
                             <p class="text-xs text-gray-500">Yesterday</p>
                         </div>
                     </div>
-                    <div class="bg-gray-50 rounded-lg p-3 flex items-center justify-between">
-                        <div class="flex items-center">
-                            <i class="ti ti-player-play text-indigo-600 mr-3"></i>
-                            <span class="text-sm">My reaction to the season finale!</span>
-                        </div>
-                        <span class="text-xs text-gray-500">1:15</span>
-                    </div>
+                    <h4 class="font-medium mb-2">My reaction to the season finale!</h4>
+                    <p class="text-gray-700 mb-3">I can't believe what just happened in the season finale of Dragon's
+                        Throne! That plot twist with the queen was absolutely incredible. No spoilers, but who else is
+                        excited for next season?</p>
                     <div class="flex items-center space-x-4 mt-3 text-gray-500">
                         <button class="flex items-center space-x-1">
                             <i class="ti ti-heart text-red-500"></i>
@@ -155,17 +152,17 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
                 <div class="flex flex-col items-center text-center p-4">
                     <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-3">
-                        <i class="ti ti-microphone-2 text-indigo-600"></i>
+                        <i class="ti ti-writing text-indigo-600"></i>
                     </div>
-                    <h3 class="font-medium mb-1">Audio Posts</h3>
-                    <p class="text-sm text-gray-500">Share your voice in seconds</p>
+                    <h3 class="font-medium mb-1">Rich Content</h3>
+                    <p class="text-sm text-gray-500">Share thoughts and media</p>
                 </div>
 
                 <div class="flex flex-col items-center text-center p-4">
                     <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-3">
                         <i class="ti ti-message text-indigo-600"></i>
                     </div>
-                    <h3 class="font-medium mb-1">Voice Replies</h3>
+                    <h3 class="font-medium mb-1">Comments</h3>
                     <p class="text-sm text-gray-500">Respond to friends naturally</p>
                 </div>
 
@@ -190,15 +187,15 @@
                         <i class="ti ti-user-circle text-indigo-600"></i>
                     </div>
                     <h3 class="font-medium mb-1">Profiles</h3>
-                    <p class="text-sm text-gray-500">Showcase your voice identity</p>
+                    <p class="text-sm text-gray-500">Showcase your identity</p>
                 </div>
 
                 <div class="flex flex-col items-center text-center p-4">
                     <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-3">
-                        <i class="ti ti-messages text-indigo-600"></i>
+                        <i class="ti ti-eye text-indigo-600"></i>
                     </div>
-                    <h3 class="font-medium mb-1">Group Chats</h3>
-                    <p class="text-sm text-gray-500">Create audio chat rooms</p>
+                    <h3 class="font-medium mb-1">Privacy Controls</h3>
+                    <p class="text-sm text-gray-500">Public or private posts</p>
                 </div>
 
                 <div class="flex flex-col items-center text-center p-4">
@@ -211,10 +208,10 @@
 
                 <div class="flex flex-col items-center text-center p-4">
                     <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-3">
-                        <i class="ti ti-shield-lock text-indigo-600"></i>
+                        <i class="ti ti-calendar text-indigo-600"></i>
                     </div>
-                    <h3 class="font-medium mb-1">Privacy</h3>
-                    <p class="text-sm text-gray-500">Control who hears your voice</p>
+                    <h3 class="font-medium mb-1">Scheduling</h3>
+                    <p class="text-sm text-gray-500">Plan your content ahead</p>
                 </div>
             </div>
         </div>
@@ -223,7 +220,8 @@
         <div
             class="w-full max-w-5xl bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-12 text-white text-center mt-16">
             <h2 class="text-3xl font-bold mb-4">Join the Conversation</h2>
-            <p class="text-xl mb-8 max-w-2xl mx-auto">Connect with friends and meet new people through the power of voice.
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Connect with friends and meet new people through the power of shared
+                content.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="/register"
@@ -312,15 +310,15 @@
 
                 <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
                     <div class="flex items-center mb-4">
-                        <i class="ti ti-microphone text-indigo-600 text-2xl mr-3"></i>
+                        <i class="ti ti-edit text-indigo-600 text-2xl mr-3"></i>
                         <h3 class="text-xl font-semibold">Share Your Perspective</h3>
                     </div>
-                    <p class="text-gray-600 mb-4">Express yourself through voice in a way text never could. Add context,
-                        emotion, and nuance to your conversations.</p>
-                    <div class="flex items-center space-x-2 text-sm font-medium">
+                    <p class="text-gray-600 mb-4">Express yourself through engaging content. Add context, emotion, and
+                        media to your posts to stand out.</p>
+                    <div class="flex items-center justify-center flex-wrap gap-2 text-sm font-medium sm:justify-baseline">
                         <span class="px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full">#technology</span>
                         <span class="px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full">#entertainment</span>
-                        <span class="px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full">#music</span>
+                        <span class="px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full">#lifestyle</span>
                         <span class="px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full">+100 more</span>
                     </div>
                 </div>
@@ -348,8 +346,8 @@
                             </div>
                         </div>
                     </div>
-                    <p class="text-gray-600 italic">"Yappr lets me stay connected with my friends abroad. Hearing their
-                        voices makes all the difference!"</p>
+                    <p class="text-gray-600 italic">"Yappr lets me stay connected with my friends abroad. The private post
+                        feature is perfect for sharing moments with just my close circle!"</p>
                 </div>
 
                 <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
@@ -388,8 +386,8 @@
                             </div>
                         </div>
                     </div>
-                    <p class="text-gray-600 italic">"I love how Yappr makes social media feel more human again. It's
-                        refreshing to hear real voices instead of just reading text."</p>
+                    <p class="text-gray-600 italic">"I love how Yappr makes social media feel more authentic again. The
+                        scheduling feature helps me maintain a consistent presence."</p>
                 </div>
             </div>
         </div>
@@ -401,11 +399,11 @@
             <div class="space-y-4">
                 <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
                     <div class="flex items-center justify-between">
-                        <h3 class="font-semibold text-lg">How long can my audio posts be?</h3>
+                        <h3 class="font-semibold text-lg">What type of content can I post?</h3>
                         <i class="ti ti-plus text-indigo-600"></i>
                     </div>
-                    <p class="text-gray-600 mt-2">Standard posts can be up to 60 seconds long. Premium users can create
-                        posts up to 3 minutes in length.</p>
+                    <p class="text-gray-600 mt-2">You can create text posts with rich formatting, add images, and share
+                        links. Our platform supports various content types to help you express yourself.</p>
                 </div>
 
                 <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
@@ -418,11 +416,20 @@
 
                 <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
                     <div class="flex items-center justify-between">
-                        <h3 class="font-semibold text-lg">Can I make my profile private?</h3>
+                        <h3 class="font-semibold text-lg">Can I make my posts private?</h3>
                         <i class="ti ti-plus text-indigo-600"></i>
                     </div>
-                    <p class="text-gray-600 mt-2">Absolutely. You can set your profile to private so only approved
-                        followers can hear your posts.</p>
+                    <p class="text-gray-600 mt-2">Absolutely. You can set individual posts to private so only approved
+                        followers can see them.</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-semibold text-lg">What is the post scheduling feature?</h3>
+                        <i class="ti ti-plus text-indigo-600"></i>
+                    </div>
+                    <p class="text-gray-600 mt-2">The scheduling feature allows you to create posts and set them to publish
+                        at a future date and time, helping you maintain a consistent presence.</p>
                 </div>
             </div>
         </div>
@@ -431,7 +438,7 @@
         <div
             class="w-full max-w-5xl bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-12 text-white text-center mt-16">
             <h2 class="text-3xl font-bold mb-4">Ready to Join the Conversation?</h2>
-            <p class="text-xl mb-8 max-w-2xl mx-auto">Create your account today and start sharing your voice with the
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Create your account today and start sharing your content with the
                 world.</p>
             <a href="/register"
                 class="px-8 py-3 bg-white text-indigo-600 font-medium rounded-lg hover:bg-gray-100 transition-colors duration-200 inline-flex items-center">

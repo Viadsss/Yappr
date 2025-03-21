@@ -9,6 +9,7 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rules\Password;
 
 class RegisteredUser extends Controller
 {
@@ -52,14 +53,23 @@ class RegisteredUser extends Controller
             $attributes['avatar'] = Storage::disk('public')->putFile('avatars', $request->file('avatar'));
         }
 
-        if (!empty($attributes['password'])) {
-            $attributes['password'] = Hash::make($attributes['password']);
-        } else {
-            unset($attributes['password']);
-        }
-
         $user->update($attributes);
 
         return redirect()->route('profile')->with('status', 'Profile updated successfully!');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $validated = $request->validate([
+            'current_password' => ['required', 'current_password'],
+            'password' => ['required', 'confirmed', Password::default()]
+        ]);
+
+        $user = auth()->user();
+        $user->update([
+            'password' => Hash::make($validated['password'])
+        ]);
+
+        return redirect()->route('profile')->with('status', 'Password updated successfully!');
     }
 }

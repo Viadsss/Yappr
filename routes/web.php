@@ -13,14 +13,23 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
+Route::get('/test', function () {
+    return view('test');
+});
+
 Route::get('/yaps', [PostController::class, 'index'])
     ->middleware('auth')
     ->name('yaps.index');
+
+Route::get('/yaps/create', [PostController::class, 'create'])
+    ->middleware('auth')
+    ->name('yaps.create');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [RegisteredUser::class, 'show'])->name('profile');
     Route::get('/profile/edit', [RegisteredUser::class, 'edit'])->name('edit-profile');
     Route::put('/profile', [RegisteredUser::class, 'update'])->name('update-profile');
+    Route::put('/profile/password', [RegisteredUser::class, 'updatePassword'])->name('update-profile-password');
 });
 
 Route::middleware('guest')->group(function () {

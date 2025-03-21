@@ -1,7 +1,7 @@
 <footer class="mx-auto bg-white text-gray-700">
     <section class="max-w-screen-2xl mx-auto flex flex-col items-center px-8 py-8 sm:flex-row">
         <i class="ti ti-brand-laravel text-4xl text-indigo-600 mr-2"></i>
-        <a href="#" class="text-2xl font-black leading-none text-gray-900 select-none logo">Yappr<span
+        <a href="/" class="text-2xl font-black leading-none text-gray-900 select-none logo">Yappr<span
                 class="text-indigo-600">.</span></a>
         <p class="mt-4 text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l sm:border-gray-200 sm:mt-0 text-center px-6">
             &copy; {{ date('Y') }}

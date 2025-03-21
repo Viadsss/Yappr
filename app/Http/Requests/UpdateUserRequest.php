@@ -35,7 +35,6 @@ class UpdateUserRequest extends FormRequest
             ],
             'gender' => ['sometimes', 'in:male,female,others,unspecified'],
             'avatar' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
-            'password' => ['nullable', Password::default(), 'confirmed']
         ];
     }
 

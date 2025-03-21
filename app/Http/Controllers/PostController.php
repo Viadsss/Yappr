@@ -12,7 +12,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->with('user:id,name')->get();
+        // $posts = Post::latest()->with('user:id,name')->get();
+        $posts = Post::with('user:id,name')->latest()->simplePaginate(5);
         return view('yaps.index', compact('posts'));
     }
 
@@ -21,7 +22,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('yaps.create');
     }
 
     /**
