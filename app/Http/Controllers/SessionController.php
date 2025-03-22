@@ -40,7 +40,7 @@ class SessionController extends Controller
 
         request()->session()->regenerate();
 
-        return redirect()->route('yaps.index');
+        return redirect()->intended(route('yaps.index'));
     }
 
     public function destroy(Request $request)

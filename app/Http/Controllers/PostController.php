@@ -12,7 +12,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('user:id,full_name,username,avatar')->latest()->simplePaginate(5);
+        $posts = Post::with(['user:id,full_name,username,avatar'])->withCount('reactions')->latest()->simplePaginate(5);
         return view('yaps.index', compact('posts'));
     }
 
@@ -57,7 +57,18 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        $post->load('user')->loadCount('reactions');
+        $reacted = false;
+
+        $user = auth()->user();
+
+        $reacted = $post->hasReactionFrom($user);
+
+        // if (auth()->check()) {
+        //     $reacted = $post->reactions()->where('user_id', auth()->id())->exists();
+        // }
+
+        return view('yaps.show', ['post' => $post, 'reacted' => $reacted]);
     }
 
     /**

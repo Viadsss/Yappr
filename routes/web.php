@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\RegisteredUser;
+use App\Http\Controllers\RegisteredUserController;
+use App\Http\Controllers\ReactionController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,8 +19,8 @@ Route::get('/test', function () {
 });
 
 Route::middleware('guest')->group(function () {
-    Route::get('/register', [RegisteredUser::class, 'create'])->name('register');
-    Route::post('/register', [RegisteredUser::class, 'store'])->name('user.store');
+    Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+    Route::post('/register', [RegisteredUserController::class, 'store'])->name('user.store');
 
     Route::get('/login', [SessionController::class, 'create'])->name('login');
     Route::post('/login', [SessionController::class, 'store'])->name('session.store');
@@ -34,13 +35,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/yaps/create', [PostController::class, 'create'])->name('yaps.create');
     Route::post('/yaps', [PostController::class, 'store'])->name('yaps.store');
 
-    Route::get('/profile/edit', [RegisteredUser::class, 'edit'])->name('edit-profile');
-    Route::put('/profile', [RegisteredUser::class, 'update'])->name('update-profile');
-    Route::put('/profile/password', [RegisteredUser::class, 'updatePassword'])->name('update-profile-password');
+    Route::get('/profile/edit', [RegisteredUserController::class, 'edit'])->name('edit-profile');
+    Route::put('/profile', [RegisteredUserController::class, 'update'])->name('update-profile');
+    Route::put('/profile/password', [RegisteredUserController::class, 'updatePassword'])->name('update-profile-password');
+    Route::get('/yaps/{post:slug}/edit', [PostController::class, 'edit'])->name('post.edit');
 });
 
 Route::get('/yaps', [PostController::class, 'index'])->name('yaps.index');
-Route::get('/u/{user:username}', [RegisteredUser::class, 'show'])->name('profile');
+Route::get('/u/{user:username}', [RegisteredUserController::class, 'show'])->name('profile');
 
+Route::get('/yaps/{post:slug}', [PostController::class, 'show'])->name('post.show');
+
+Route::post('/reactions', [ReactionController::class, 'store'])->name('reactions.store');
 
 

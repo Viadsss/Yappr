@@ -11,11 +11,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\Password;
 
-class RegisteredUser extends Controller
+class RegisteredUserController extends Controller
 {
     public function show(User $user)
     {
-        // Eager load posts with their reactions and paginate them
         $posts = $user->posts()
             ->with('reactions')
             ->withCount('reactions')
