@@ -58,12 +58,12 @@
 
         <!-- User Posts -->
         <div class="mb-8">
-            <h2 class="text-2xl font-bold mb-4">Posts by {{ $user->full_name }}</h2>
 
             @if ($posts->count() > 0)
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     @foreach ($posts as $post)
-                        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                        <a href="{{ route('post.show', $post) }}"
+                            class="block bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
                             <!-- Post Thumbnail -->
                             @if ($post->thumbnail)
                                 <img src="{{ asset('storage/' . $post->thumbnail) }}" alt="{{ $post->title }}"
@@ -93,16 +93,13 @@
 
                                 <!-- Post Footer -->
                                 <div class="flex justify-between items-center pt-2 border-t border-gray-200">
-                                    <div class="flex items-center gap-1">
-                                        <i class="ti ti-heart-filled text-red-500"></i>
+                                    <div class="flex items-center gap-1 text-gray-500">
+                                        <i class="ti ti-heart-filled"></i>
                                         <span>{{ $post->reactions_count }}</span>
                                     </div>
-                                    <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">
-                                        Read More
-                                    </a>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     @endforeach
                 </div>
 

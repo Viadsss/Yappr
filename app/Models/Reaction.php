@@ -11,6 +11,8 @@ class Reaction extends Model
     /** @use HasFactory<\Database\Factories\ReactionFactory> */
     use HasFactory;
 
+    protected $fillable = ['user_id', 'post_id'];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

@@ -30,7 +30,8 @@
 
         <div class="space-y-4">
             @foreach ($posts as $post)
-                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+                <div id="post-{{ $post->slug }}" data-route="{{ route('post.show', $post->slug) }}"
+                    class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
                     <div class="flex items-center space-x-3 mb-3">
                         <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center overflow-hidden">
                             @if ($post->user->avatar)
@@ -58,17 +59,18 @@
                     @endif
 
                     <div class="flex items-center space-x-4 mt-3 text-gray-500">
+                        <button id="reactBtn"
+                            class="flex items-center space-x-1 cursor-pointer {{ $post->hasReactionFrom(auth()->user()) ? 'text-red-500' : '' }}">
+                            <i class="ti ti-heart-filled"></i>
+                            <span>{{ \Number::abbreviate($post->reactions_count) }}</span>
+                        </button>
                         <a href="" class="flex items-center space-x-1">
-                            <i class="ti ti-heart-filled text-red-500"></i>
-                            <span>3</span>
-                        </a>
-                        <a href="" class="flex items-center space-x-1">
-                            <i class="ti ti-message-circle"></i>
-                            <span>0</span>
+                            <i class="ti ti-message-circle-filled"></i>
+                            <span>{{ \Number::abbreviate(0) }}</span>
                         </a>
                         <a href="" class="flex items-center space-x-1">
                             <i class="ti ti-share"></i>
-                            <span>0</span>
+                            <span>{{ \Number::abbreviate(0) }}</span>
                         </a>
                     </div>
                 </div>
@@ -94,3 +96,19 @@
 @section('footer')
     <x-footer />
 @endsection
+
+@pushOnce('scripts')
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll("[data-route]").forEach(post => {
+                post.addEventListener("click", (event) => {
+                    if (event.target.closest("button")) {
+                        return;
+                    }
+
+                    window.location.href = post.getAttribute("data-route");
+                });
+            });
+        });
+    </script>
+@endPushOnce
