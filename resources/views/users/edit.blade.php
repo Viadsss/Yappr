@@ -14,7 +14,8 @@
             @csrf
             @method('PUT')
 
-            <x-forms.input.text label="Name" name="name" :required="true" autocomplete="name" :value="auth()->user()->name" />
+            <x-forms.input.text label="Full Name" name="full_name" :required="true" autocomplete="name" :value="auth()->user()->full_name" />
+            <x-forms.input.text label="Username" name="username" :required="true" :value="auth()->user()->username" />
 
             <x-forms.input.text label="Email" name="email" :required="true" type="email" autocomplete="email"
                 :value="auth()->user()->email" />

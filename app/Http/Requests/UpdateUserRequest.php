@@ -31,7 +31,7 @@ class UpdateUserRequest extends FormRequest
                 'alpha_dash:ascii',
                 'min:3',
                 'max:20',
-                Rule::unique('users', 'username')->ignore($this->user()->username)
+                Rule::unique('users', 'username')->ignore($this->user()->id)
             ],
             'email' => [
                 'sometimes',

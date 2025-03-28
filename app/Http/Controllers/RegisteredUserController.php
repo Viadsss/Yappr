@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Mail\WelcomeUser;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\Password;
 
@@ -43,6 +45,8 @@ class RegisteredUserController extends Controller
         $user = User::create($attributes);
         Auth::login($user);
 
+        Mail::to($user->email)->send(new WelcomeUser($user));
+
         return redirect()->intended(route('yaps.index'));
     }
 
@@ -69,7 +73,9 @@ class RegisteredUserController extends Controller
 
         $user->update($attributes);
 
-        return redirect()->route('profile')->with('status', 'Profile updated successfully!');
+        Mail::to($user->email)->queue(new WelcomeUser($user));
+
+        return redirect()->route('profile', $user)->with('status', 'Profile updated successfully!');
     }
 
     public function updatePassword(Request $request)
