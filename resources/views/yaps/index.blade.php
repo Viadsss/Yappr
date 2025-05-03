@@ -54,7 +54,7 @@
                     @if ($post->thumbnail)
                         <div class="p-3 mb-3">
                             <img src="{{ asset($post->thumbnail) }}" alt="{{ $post->title }}"
-                                class="rounded object-cover" />
+                                class="rounded w-full max-h-96 object-cover" />
                         </div>
                     @endif
 
