@@ -34,7 +34,7 @@
                 class="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl transform rotate-1 opacity-10">
             </div>
             <div class="relative bg-white p-6 rounded-xl shadow-xl overflow-hidden">
-                <img src="https://placehold.co/1200x600" alt="Yappr Feed Interface"
+                <img src="{{ asset('images/hero_banner.png') }}" alt="Yappr Feed Banner"
                     class="rounded-lg w-full object-cover" />
             </div>
         </div>
@@ -74,20 +74,22 @@
                 <!-- Example Post 1 -->
                 <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
                     <div class="flex items-center space-x-3 mb-3">
-                        <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center">
-                            <i class="ti ti-user text-indigo-600"></i>
+                        <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center overflow-hidden">
+                            <img src="{{ asset('images/hero_avatar_3.png') }}" alt="Alex Morgan avatar"
+                                class="w-full h-full object-cover">
                         </div>
                         <div>
                             <p class="font-medium">Alex Morgan</p>
                             <p class="text-xs text-gray-500">2 hours ago</p>
                         </div>
                     </div>
-                    <h4 class="font-medium mb-2">Thoughts on the latest tech trends</h4>
-                    <p class="text-gray-700 mb-3">Just attended an amazing tech conference where the future of AI was
-                        discussed. The potential applications in healthcare are mind-blowing! What do you think about the
-                        ethical implications?</p>
+                    <h4 class="font-medium mb-2">Quick Escape to Osaka</h4>
+                    <p class="text-gray-700 mb-3">Took a walk near Osaka Castle today and the cherry blossoms were in full
+                        bloom. The weather was perfect, and honestly, it felt good to just slow down for a bit. Spring in
+                        Japan hits different.</p>
                     <div class="bg-gray-50 rounded-lg p-3 mb-3">
-                        <img src="https://placehold.co/600x300" alt="Tech Conference" class="rounded w-full object-cover" />
+                        <img src="{{ asset('images/hero_thumbnail.jpg') }}" alt="Japan Sakura and castle"
+                            class="rounded w-full object-cover" />
                     </div>
                     <div class="flex items-center space-x-4 mt-3 text-gray-500">
                         <button class="flex items-center space-x-1">
@@ -108,11 +110,12 @@
                 <!-- Example Post 2 -->
                 <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
                     <div class="flex items-center space-x-3 mb-3">
-                        <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                            <i class="ti ti-user text-purple-600"></i>
+                        <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center overflow-hidden">
+                            <img src="{{ asset('images/hero_avatar_2.png') }}" alt="Jannie Chen avatar"
+                                class="w-full h-full object-cover">
                         </div>
                         <div>
-                            <p class="font-medium">Jamie Chen</p>
+                            <p class="font-medium">Jannie Chen</p>
                             <p class="text-xs text-gray-500">Yesterday</p>
                         </div>
                     </div>
@@ -237,36 +240,6 @@
             </div>
         </div>
 
-        <!-- Download App Section -->
-        <div class="w-full max-w-5xl flex flex-col md:flex-row items-center gap-8 mt-16">
-            <div class="w-full md:w-1/2 space-y-6">
-                <h2 class="text-3xl font-bold">Take Yappr Everywhere</h2>
-                <p class="text-xl text-gray-600">Download our mobile app to stay connected with your network on the go.</p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#"
-                        class="flex items-center justify-center bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors duration-200">
-                        <i class="ti ti-brand-apple mr-2 text-xl"></i>
-                        App Store
-                    </a>
-                    <a href="#"
-                        class="flex items-center justify-center bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors duration-200">
-                        <i class="ti ti-brand-google-play mr-2 text-xl"></i>
-                        Google Play
-                    </a>
-                </div>
-            </div>
-            <div class="w-full md:w-1/2">
-                <div class="relative">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-b from-indigo-500 to-purple-600 rounded-xl transform rotate-3 opacity-10">
-                    </div>
-                    <div class="relative">
-                        <img src="https://placehold.co/500x600" alt="Yappr Mobile App"
-                            class="rounded-xl w-full object-cover shadow-lg" />
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <!-- Community Section -->
         <div class="w-full max-w-5xl mt-16">
@@ -281,28 +254,23 @@
                     <p class="text-gray-600 mb-4">Find friends, colleagues, and interesting creators to follow. Build your
                         network and engage with others who share your interests.</p>
                     <div class="flex -space-x-2 overflow-hidden">
-                        <div
-                            class="w-8 h-8 rounded-full bg-indigo-100 border-2 border-white flex items-center justify-center">
-                            <i class="ti ti-user text-indigo-600 text-xs"></i>
+                        <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center overflow-hidden">
+                            <img src="{{ asset('images/hero_avatar_3.png') }}" class="w-full h-full object-cover">
+                        </div>
+                        <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center overflow-hidden">
+                            <img src="{{ asset('images/hero_avatar_4.png') }}" class="w-full h-full object-cover">
+                        </div>
+                        <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center overflow-hidden">
+                            <img src="{{ asset('images/hero_avatar_5.png') }}" class="w-full h-full object-cover">
+                        </div>
+                        <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center overflow-hidden">
+                            <img src="{{ asset('images/hero_avatar_6.png') }}" class="w-full h-full object-cover">
+                        </div>
+                        <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center overflow-hidden">
+                            <img src="{{ asset('images/hero_avatar_7.png') }}" class="w-full h-full object-cover">
                         </div>
                         <div
-                            class="w-8 h-8 rounded-full bg-purple-100 border-2 border-white flex items-center justify-center">
-                            <i class="ti ti-user text-purple-600 text-xs"></i>
-                        </div>
-                        <div
-                            class="w-8 h-8 rounded-full bg-pink-100 border-2 border-white flex items-center justify-center">
-                            <i class="ti ti-user text-pink-600 text-xs"></i>
-                        </div>
-                        <div
-                            class="w-8 h-8 rounded-full bg-blue-100 border-2 border-white flex items-center justify-center">
-                            <i class="ti ti-user text-blue-600 text-xs"></i>
-                        </div>
-                        <div
-                            class="w-8 h-8 rounded-full bg-green-100 border-2 border-white flex items-center justify-center">
-                            <i class="ti ti-user text-green-600 text-xs"></i>
-                        </div>
-                        <div
-                            class="w-8 h-8 rounded-full bg-gray-100 border-2 border-white flex items-center justify-center text-xs font-medium">
+                            class="w-10 h-10 rounded-full bg-gray-100 border-2 border-white flex items-center justify-center text-xs font-medium">
                             +2K
                         </div>
                     </div>
@@ -332,8 +300,8 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
                     <div class="flex items-center space-x-3 mb-4">
-                        <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center">
-                            <i class="ti ti-user text-indigo-600"></i>
+                        <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center overflow-hidden">
+                            <img src="{{ asset('images/hero_avatar_10.png') }}" class="w-full h-full object-cover">
                         </div>
                         <div>
                             <p class="font-medium">Taylor K.</p>
@@ -352,8 +320,8 @@
 
                 <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
                     <div class="flex items-center space-x-3 mb-4">
-                        <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                            <i class="ti ti-user text-purple-600"></i>
+                        <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center overflow-hidden">
+                            <img src="{{ asset('images/hero_avatar_11.png') }}" class="w-full h-full object-cover">
                         </div>
                         <div>
                             <p class="font-medium">Chris M.</p>
@@ -372,8 +340,8 @@
 
                 <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
                     <div class="flex items-center space-x-3 mb-4">
-                        <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center">
-                            <i class="ti ti-user text-pink-600"></i>
+                        <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center overflow-hidden">
+                            <img src="{{ asset('images/hero_avatar_9.png') }}" class="w-full h-full object-cover">
                         </div>
                         <div>
                             <p class="font-medium">Jordan L.</p>
