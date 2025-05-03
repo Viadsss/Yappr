@@ -34,6 +34,7 @@
                 <div class="prose max-w-none text-gray-800">
                     {{ $post->content }}
                 </div>
+                <img src="{{ asset($post->thumbnail) }}" alt="Post Image" class="mt-4 w-full h-auto rounded-lg">
             </div>
 
             <!-- Reactions Section -->
