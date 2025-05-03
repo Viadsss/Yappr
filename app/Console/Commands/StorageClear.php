@@ -35,7 +35,7 @@ class StorageClear extends Command
             $publicPath = storage_path('app/public');
             $publicSymlinkPath = public_path('storage');
 
-            if (!is_dir($publicPath)) {
+            if (! is_dir($publicPath)) {
                 $this->warn("Public storage directory doesn't exist: $publicPath");
             } else {
                 $this->info('Clearing public storage directory...');
@@ -43,7 +43,7 @@ class StorageClear extends Command
                 $this->info("Cleared {$count} files from public storage (preserved .gitignore files).");
             }
 
-            if (!is_dir($publicSymlinkPath)) {
+            if (! is_dir($publicSymlinkPath)) {
                 $this->warn("Public symlink directory doesn't exist: $publicSymlinkPath");
             } else {
                 $count = $this->clearDirectory($publicSymlinkPath);
@@ -52,8 +52,9 @@ class StorageClear extends Command
         } else {
             $privatePath = storage_path('app/private');
 
-            if (!is_dir($privatePath)) {
+            if (! is_dir($privatePath)) {
                 $this->warn("Private storage directory doesn't exist: $privatePath");
+
                 return;
             }
 
@@ -68,13 +69,14 @@ class StorageClear extends Command
     /**
      * Recursively deletes files and folders, excluding `.gitignore`
      *
-     * @param string $path Directory path to clear
+     * @param  string  $path  Directory path to clear
      * @return int Number of files removed
      */
     protected function clearDirectory(string $path): int
     {
-        if (!is_dir($path)) {
+        if (! is_dir($path)) {
             $this->warn("Directory does not exist: $path");
+
             return 0;
         }
 
@@ -86,7 +88,7 @@ class StorageClear extends Command
                 continue;
             }
 
-            $fullPath = $path . DIRECTORY_SEPARATOR . $file;
+            $fullPath = $path.DIRECTORY_SEPARATOR.$file;
 
             try {
                 if (is_dir($fullPath)) {
@@ -111,7 +113,7 @@ class StorageClear extends Command
                     }
                 }
             } catch (\Exception $e) {
-                $this->error("Failed to remove {$fullPath}: " . $e->getMessage());
+                $this->error("Failed to remove {$fullPath}: ".$e->getMessage());
             }
         }
 

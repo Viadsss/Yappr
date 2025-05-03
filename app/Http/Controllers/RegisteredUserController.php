@@ -25,7 +25,7 @@ class RegisteredUserController extends Controller
 
         return view('users.show', [
             'user' => $user->loadCount('posts'),
-            'posts' => $posts
+            'posts' => $posts,
         ]);
     }
 
@@ -82,12 +82,12 @@ class RegisteredUserController extends Controller
     {
         $validated = $request->validate([
             'current_password' => ['required', 'current_password'],
-            'password' => ['required', 'confirmed', Password::default()]
+            'password' => ['required', 'confirmed', Password::default()],
         ]);
 
         $user = auth()->user();
         $user->update([
-            'password' => Hash::make($validated['password'])
+            'password' => Hash::make($validated['password']),
         ]);
 
         return redirect()->route('profile')->with('status', 'Password updated successfully!');

@@ -29,14 +29,14 @@ class RegisterRequest extends FormRequest
             'email' => ['required', 'string', 'email:strict,dns', 'max:255', 'unique:users,email'],
             'gender' => ['required', 'in:male,female,others,unspecified'],
             'avatar' => ['required', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
-            'password' => ['required', Password::default(), 'confirmed']
+            'password' => ['required', Password::default(), 'confirmed'],
         ];
     }
 
     public function messages()
     {
         return [
-            'avatar.max' => 'Avatar must be 2MB or smaller.'
+            'avatar.max' => 'Avatar must be 2MB or smaller.',
         ];
     }
 
@@ -44,7 +44,7 @@ class RegisterRequest extends FormRequest
     {
         $this->merge([
             'email' => Str::lower($this->email),
-            'username' => Str::lower($this->username)
+            'username' => Str::lower($this->username),
         ]);
     }
 }

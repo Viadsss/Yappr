@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\ReactionController;
+use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,7 +30,6 @@ Route::delete('/logout', [SessionController::class, 'destroy'])
     ->middleware('auth')
     ->name('logout');
 
-
 Route::middleware('auth')->group(function () {
     Route::get('/yaps/create', [PostController::class, 'create'])->name('yaps.create');
     Route::post('/yaps', [PostController::class, 'store'])->name('yaps.store');
@@ -47,5 +46,3 @@ Route::get('/u/{user:username}', [RegisteredUserController::class, 'show'])->nam
 Route::get('/yaps/{post:slug}', [PostController::class, 'show'])->name('post.show');
 
 Route::post('/reactions', [ReactionController::class, 'store'])->name('reactions.store');
-
-

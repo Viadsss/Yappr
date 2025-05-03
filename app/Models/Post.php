@@ -44,11 +44,10 @@ class Post extends Model
 
     public function hasReactionFrom(?User $user): bool
     {
-        if (!$user) {
+        if (! $user) {
             return false;
         }
 
         return $this->reactions()->where('user_id', $user->id)->exists();
     }
-
 }

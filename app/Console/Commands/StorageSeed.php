@@ -38,13 +38,15 @@ class StorageSeed extends Command
         $force = $this->option('force');
 
         // Validate target type
-        if (!in_array($targetType, ['public', 'private'])) {
+        if (! in_array($targetType, ['public', 'private'])) {
             $this->error("Invalid target type. Must be 'public' or 'private'.");
+
             return 1;
         }
 
-        if (!is_dir($sourcePath)) {
+        if (! is_dir($sourcePath)) {
             $this->error("Source directory does not exist: {$sourcePath}");
+
             return 1;
         }
 
@@ -52,7 +54,7 @@ class StorageSeed extends Command
         $targetBasePath = storage_path("app/{$targetType}");
 
         // Ensure the storage directory exists
-        if (!File::exists($targetBasePath)) {
+        if (! File::exists($targetBasePath)) {
             File::makeDirectory($targetBasePath, 0755, true);
             $this->info("Created directory: {$targetBasePath}");
         }
@@ -69,6 +71,7 @@ class StorageSeed extends Command
 
             if (empty($filesInRoot)) {
                 $this->warn("No files or subdirectories found in {$sourcePath}. Nothing to seed.");
+
                 return 0;
             }
 
@@ -83,7 +86,7 @@ class StorageSeed extends Command
                 $targetDir = "{$targetBasePath}/{$dirName}";
 
                 // Create target directory if it doesn't exist
-                if (!File::exists($targetDir)) {
+                if (! File::exists($targetDir)) {
                     File::makeDirectory($targetDir, 0755, true);
                     $this->info("Created directory: {$targetDir}");
                 }
@@ -98,15 +101,16 @@ class StorageSeed extends Command
         }
 
         $this->info("Storage seeding complete! {$totalCopied} files copied.");
+
         return 0;
     }
 
     /**
      * Copy files from source to target directory
      *
-     * @param array $files Array of SplFileInfo objects
-     * @param string $targetDir Target directory path
-     * @param bool $force Whether to force overwrite existing files
+     * @param  array  $files  Array of SplFileInfo objects
+     * @param  string  $targetDir  Target directory path
+     * @param  bool  $force  Whether to force overwrite existing files
      * @return int Number of files copied
      */
     protected function copyFiles(array $files, string $targetDir, bool $force): int
@@ -118,8 +122,9 @@ class StorageSeed extends Command
             $targetFile = "{$targetDir}/{$fileName}";
 
             // Check if file already exists and handle accordingly
-            if (File::exists($targetFile) && !$force) {
+            if (File::exists($targetFile) && ! $force) {
                 $this->line("  <comment>Skipped</comment>: {$fileName} (already exists)");
+
                 continue;
             }
 

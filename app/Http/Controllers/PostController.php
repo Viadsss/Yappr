@@ -13,6 +13,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::with(['user:id,full_name,username,avatar'])->withCount('reactions')->latest()->simplePaginate(5);
+
         return view('yaps.index', compact('posts'));
     }
 
@@ -38,7 +39,6 @@ class PostController extends Controller
         ], [
             'thumbnail.max' => 'The thumbnail must be 5MB or smaller.',
         ]);
-
 
         if ($request->hasFile('thumbnail')) {
             $validated['thumbnail'] = $request->file('thumbnail')->store('thumbnails', 'public');

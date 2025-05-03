@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\Password;
 use Str;
 
 class UpdateUserRequest extends FormRequest
@@ -31,14 +30,14 @@ class UpdateUserRequest extends FormRequest
                 'alpha_dash:ascii',
                 'min:3',
                 'max:20',
-                Rule::unique('users', 'username')->ignore($this->user()->id)
+                Rule::unique('users', 'username')->ignore($this->user()->id),
             ],
             'email' => [
                 'sometimes',
                 'string',
                 'email:strict,dns',
                 'max:255',
-                Rule::unique('users', 'email')->ignore($this->user()->id)
+                Rule::unique('users', 'email')->ignore($this->user()->id),
             ],
             'gender' => ['sometimes', 'in:male,female,others,unspecified'],
             'avatar' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
@@ -62,7 +61,7 @@ class UpdateUserRequest extends FormRequest
 
         if ($this->username) {
             $this->merge([
-                'username' => Str::lower($this->username)
+                'username' => Str::lower($this->username),
             ]);
         }
     }

@@ -11,7 +11,7 @@ class ExampleTest extends TestCase
      * A basic test example.
      */
 
-     // test_[expected behavior]_[context] format
+    // test_[expected behavior]_[context] format
     public function test_the_application_returns_a_successful_response(): void
     {
         $response = $this->get('/');

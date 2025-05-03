@@ -24,7 +24,7 @@ class SessionController extends Controller
             $loginField => $loginField === 'email'
                 ? Str::lower($request->input('email'))
                 : $request->input('email'),
-            'password' => $request->input('password')
+            'password' => $request->input('password'),
         ];
 
         $request->validate([
@@ -32,9 +32,9 @@ class SessionController extends Controller
             'password' => ['required'],
         ]);
 
-        if (!Auth::attempt($credentials, $request->has('remember_me'))) {
+        if (! Auth::attempt($credentials, $request->has('remember_me'))) {
             throw ValidationException::withMessages([
-                'password' => 'Credentials do not match our records'
+                'password' => 'Credentials do not match our records',
             ]);
         }
 

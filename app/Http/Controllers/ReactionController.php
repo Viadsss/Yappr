@@ -31,7 +31,7 @@ class ReactionController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'post_id' => ['required', 'exists:posts,id']
+            'post_id' => ['required', 'exists:posts,id'],
         ]);
 
         $user = auth()->user();
@@ -64,7 +64,6 @@ class ReactionController extends Controller
             'is_reacted' => $isReacted,
         ]);
     }
-
 
     /**
      * Display the specified resource.

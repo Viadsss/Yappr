@@ -5,9 +5,7 @@ namespace Tests\Feature;
 use App\Models\Post;
 use App\Models\Reaction;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Str;
 use Tests\TestCase;
 
@@ -62,7 +60,7 @@ class PostTest extends TestCase
         $thirdPost = Post::factory()->create(['title' => $firstPost->title]);
 
         $this->assertEquals($firstPost->slug, Str::slug($firstPost->title));
-        $this->assertEquals($secondPost->slug, Str::slug($firstPost->title) . '-1');
-        $this->assertEquals($thirdPost->slug, Str::slug($firstPost->title) . '-2');
+        $this->assertEquals($secondPost->slug, Str::slug($firstPost->title).'-1');
+        $this->assertEquals($thirdPost->slug, Str::slug($firstPost->title).'-2');
     }
 }
