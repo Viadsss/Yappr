@@ -21,7 +21,7 @@ class PostFactory extends Factory
             'user_id' => User::inRandomOrder()->first()->id ?? User::factory()->create()->id,
             'title' => fake()->sentence(),
             'content' => fake()->paragraphs(3, true),
-            'thumbnail' => 'defaults/default_thumbnail.png',
+            'thumbnail' => 'posts/pexels_' . fake()->numberBetween(1, 13) . '.jpg',
             'visibility' => fake()->randomElement(['public', 'private']),
             'scheduled_at' => fake()->optional(0.3)->dateTimeBetween('+5 minutes', '+1 hour')
         ];
