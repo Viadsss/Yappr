@@ -19,5 +19,7 @@ yarn-error.log
 /.fleet
 /.idea
 /.nova
-/.vscode
 /.zed
+
+/.vscode/*
+!.vscode/extensions.json
