@@ -2,10 +2,11 @@
 
 A **social media platform** built with **Laravel 12**. Yappr allows users to create posts, react to content, manage personal information, and explore posts from others in a minimal, intuitive interface.
 
+**Demo Video:** https://www.youtube.com/watch?v=g1pAo3D7hf0
+
 ![Yappr Screenshot 1](/screenshots/yaps.png)
 ![Yappr Screenshot 2](/screenshots/profile.png)
 
-[Demo Video](https://www.youtube.com/watch?v=g1pAo3D7hf0)
 
 ## ✨ Features
 
