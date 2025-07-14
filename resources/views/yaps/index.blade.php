@@ -28,6 +28,13 @@
             </div>
         @endcan
 
+        @session('status')
+            <x-alert type="{{ session('status_type') }}" class="my-4">
+                {{ session('status') }}
+            </x-alert>
+        @endsession
+
+
         <div class="space-y-4">
             @foreach ($posts as $post)
                 <div id="post-{{ $post->slug }}" data-route="{{ route('post.show', $post->slug) }}"
@@ -45,6 +52,36 @@
                             <a href="{{ route('profile', $post->user) }}"
                                 class="font-medium">{{ $post->user->full_name }}</a>
                             <p class="text-xs text-gray-500">{{ $post->created_at->diffForHumans() }}</p>
+                        </div>
+
+                        <div class="ml-auto">
+                            @can('update', $post)
+                                <x-dropdown align="right" width="32">
+                                    <x-slot:trigger>
+                                        <i class="ti ti-dots-vertical"></i>
+                                    </x-slot:trigger>
+
+                                    <x-slot:content>
+                                        <x-dropdown-link onclick="event.stopPropagation()"
+                                            href="{{ route('post.edit', $post) }}">
+                                            <i class="ti ti-edit"></i>
+                                            <span class="text-sm">Edit</span>
+                                        </x-dropdown-link>
+                                        <form method="POST" action="{{ route('post.destroy', $post) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" name="redirect_to" value="{{ url()->current() }}">
+                                            <x-dropdown-link :destructive="true" :href="route('post.destroy', $post)"
+                                                onclick="event.preventDefault();
+                                                event.stopPropagation();
+                                                this.closest('form').submit();">
+                                                <i class="ti ti-trash-x"></i>
+                                                <span class="text-sm">Delete</span>
+                                            </x-dropdown-link>
+                                        </form>
+                                    </x-slot:content>
+                                </x-dropdown>
+                            @endcan
                         </div>
                     </div>
 

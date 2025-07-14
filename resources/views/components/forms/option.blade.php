@@ -1,5 +1,5 @@
-@props(['value', 'for'])
+@props(['value', 'for', 'data' => null])
 
-<option value={{ $value }} @selected(old($for) === $value) {{ $attributes }}"">
+<option value={{ $value }} @selected(old($for, $data) === $value) {{ $attributes }}"">
     {{ $slot }}
 </option>

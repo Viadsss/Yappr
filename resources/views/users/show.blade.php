@@ -113,7 +113,7 @@
                     <p class="text-xl text-gray-600">{{ $user->full_name }} hasn't posted anything yet.</p>
 
                     @can('create', App\Models\Post::class)
-                        <a href="#"
+                        <a href="{{ route('yaps.create') }}"
                             class="inline-block mt-4 px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition">
                             Create Your First Post
                         </a>

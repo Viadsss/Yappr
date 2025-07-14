@@ -38,6 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/profile', [RegisteredUserController::class, 'update'])->name('update-profile');
     Route::put('/profile/password', [RegisteredUserController::class, 'updatePassword'])->name('update-profile-password');
     Route::get('/yaps/{post:slug}/edit', [PostController::class, 'edit'])->name('post.edit');
+    Route::put('/yaps/{post:slug}', [PostController::class, 'update'])->name('post.update');
+    Route::delete('/yaps/{post:slug}', [PostController::class, 'destroy'])->name('post.destroy');
 });
 
 Route::get('/yaps', [PostController::class, 'index'])->name('yaps.index');

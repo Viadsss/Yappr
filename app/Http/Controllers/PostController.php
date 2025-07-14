@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
+use Storage;
 
 class PostController extends Controller
 {
+
+    use AuthorizesRequests;
     /**
      * Display a listing of the resource.
      */
@@ -48,7 +52,9 @@ class PostController extends Controller
 
         Post::create($validated);
 
-        return redirect()->route('index')->with('status', 'Post created successfully!');
+        return redirect()->route('index')
+            ->with('status', 'Post created successfully!')
+            ->with('status_type', 'success');
 
     }
 
@@ -76,7 +82,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $this->authorize('update', $post);
+
+        return view('yaps.edit', compact("post"));
     }
 
     /**
@@ -84,7 +92,40 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $this->authorize('update', $post);
+
+        $validated = $request->validate([
+            'title' => ['required', 'string', 'min:5', 'max:50'],
+            'content' => ['required', 'string', 'min:10', 'max:2000'],
+            'thumbnail' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:5120'],
+            'visibility' => ['required', 'in:public,private,followers'],
+            'scheduled_at' => ['nullable', 'date'],
+            'remove_thumbnail' => ['nullable', 'boolean'],
+        ], [
+            'thumbnail.max' => 'The thumbnail must be 5MB or smaller.',
+        ]);
+
+        if ($request->boolean('remove_thumbnail') && $post->thumbnail) {
+            Storage::disk('public')->delete($post->thumbnail);
+            $validated['thumbnail'] = null;
+        }
+
+        // Handle new thumbnail upload
+        if ($request->hasFile('thumbnail')) {
+            if ($post->thumbnail) {
+                Storage::disk('public')->delete($post->thumbnail);
+            }
+            $validated['thumbnail'] = $request->file('thumbnail')->store('thumbnails', 'public');
+        }
+
+        unset($validated['remove_thumbnail']);
+
+        $post->update($validated);
+
+        return redirect()
+            ->route('post.show', $post->slug)
+            ->with('status', 'Post updated successfully!')
+            ->with('status_type', 'success');
     }
 
     /**
@@ -92,6 +133,20 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $this->authorize('delete', $post);
+
+        if ($post->thumbnail) {
+            Storage::disk('public')->delete($post->thumbnail);
+        }
+
+        $post->delete();
+
+
+        $redirectUrl = request('redirect_to')
+            ?? route('profile', auth()->user());
+
+        return redirect($redirectUrl)
+            ->with('status', 'Post deleted successfully!')
+            ->with('status_type', 'success');
     }
 }

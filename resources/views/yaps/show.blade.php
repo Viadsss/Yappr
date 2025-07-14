@@ -8,6 +8,13 @@
 @section('content')
     <div class="container mx-auto px-4 py-8">
 
+        <div class="max-w-2xl mx-auto">
+            @session('status')
+                <x-alert type="{{ session('status_type') }}" class="my-4">
+                    {{ session('status') }}
+                </x-alert>
+            @endsession
+        </div>
         <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
             <!-- Post Header -->
             <div class="p-4 flex justify-between items-center">
@@ -20,11 +27,30 @@
                     </div>
                 </div>
 
-                @can('edit', $post)
-                    <a href="{{ route('post.edit', $post) }}"
-                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
-                        Edit
-                    </a>
+                @can('update', $post)
+                    <x-dropdown align="right" width="32">
+                        <x-slot:trigger>
+                            <i class="ti ti-dots-vertical"></i>
+                        </x-slot:trigger>
+
+                        <x-slot:content>
+                            <x-dropdown-link href="{{ route('post.edit', $post) }}">
+                                <i class="ti ti-edit"></i>
+                                <span class="text-sm">Edit</span>
+                            </x-dropdown-link>
+                            <form method="POST" action="{{ route('post.destroy', $post) }}">
+                                @csrf
+                                @method('DELETE')
+
+                                <x-dropdown-link :destructive="true" :href="route('post.destroy', $post)"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                    <i class="ti ti-trash-x"></i>
+                                    <span class="text-sm">Delete</span>
+                                </x-dropdown-link>
+                            </form>
+                        </x-slot:content>
+                    </x-dropdown>
                 @endcan
             </div>
 

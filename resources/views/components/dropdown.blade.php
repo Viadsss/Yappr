@@ -14,7 +14,7 @@
 
 <div x-data="{ open: false }" class="relative">
     {{-- Trigger --}}
-    <div @click="open = !open" class="cursor-pointer">
+    <div @click="open = !open" class="cursor-pointer" onclick="event.stopPropagation()">
         {{ $trigger }}
     </div>
 

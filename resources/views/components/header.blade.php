@@ -39,7 +39,7 @@
                                 @csrf
                                 @method('DELETE')
 
-                                <x-dropdown-link :href="route('logout')"
+                                <x-dropdown-link :destructive="true" :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                     <i class="ti ti-logout"></i>
